@@ -1,7 +1,7 @@
 const express = require('express');
 const {Song, Review} = require('../models');
 const router = express.Router();
-
+//song.ejs render후 id값을 받아와 그에 해당하는 song정보와 review를 가져옴
 router.get('/', async(req, res, next) => {
   try{
     const result = await Review.findAll();

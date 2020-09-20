@@ -4,11 +4,12 @@ const sequelize = require('sequelize');
 const Op = sequelize.Op;
 
 const Song = require('../models').Song;
-
+//search.ejs 렌더 후 나열 -> recent song과 메뉴의 Songs에서 사용될 것
 router.get('/', async(req, res, next) => {
   try{
     const result = await Song.findAll({});
-    res.json(result);
+    //res.json(result);
+    res.render('song');
   }catch(err){
     console.error(err);
     res.error(err);

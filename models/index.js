@@ -10,6 +10,8 @@ db.Sequelize = Sequelize;
 
 db.Song = require('./songs')(sequelize, Sequelize);
 db.Review = require('./reviews')(sequelize, Sequelize);
+db.Coming = require('./comings')(sequelize, Sequelize);
+db.Announce = require('./announces')(sequelize, Sequelize);
 
 db.Song.hasMany(db.Review, {foreignKey: 'reviewtitle', sourceKey: 'id'});
 db.Review.belongsTo(db.Song, {foreignKey: 'reviewtitle', sourceKey: 'id'});

@@ -9,6 +9,8 @@ const indexRouter = require('./routes/index');
 const songRouter = require('./routes/song');
 const reviewRouter = require('./routes/review');
 const statisRouter = require('./routes/statis');
+const announceRouter = require('./routes/announce');
+const comingRouter = require('./routes/coming');
 
 const app = express();
 sequelize.sync();
@@ -30,6 +32,8 @@ app.use('/', indexRouter);
 app.use('/song', songRouter);
 app.use('/review', reviewRouter);
 app.use('/statis', statisRouter);
+app.use('/announce', announceRouter);
+app.use('/coming', comingRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

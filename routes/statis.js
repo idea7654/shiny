@@ -2,7 +2,7 @@ const express = require('express');
 const {Song, Review} = require('../models');
 
 const router = express.Router();
-
+//recommend.ejs 렌더 후 제공
 router.get('/', async(req, res, next) => {
   try{
     const score = await Review.findAll({
