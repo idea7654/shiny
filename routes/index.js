@@ -4,9 +4,15 @@ const router = express.Router();
 
 router.get('/', async(req, res, next) => {
   try{
-    const result = await Review.findAll({ limit: 10, order: [['createdAt', 'DESC']]});
-    //res.json(result);
-    res.render('index', {title: 'Express', result: result});
+    const resultReview = await Review.findAll({ limit: 10, order: [['createdAt', 'DESC']]});
+    const resultSong = await Song.findAll({ limit: 10, order: [['createdAt', 'DESC']]});
+
+
+    res.render('index', {
+      title: 'Express',
+      resultReview: resultReview,
+      resultSong: resultSong
+    });
   }catch(err){
     console.error(err);
     next(err);
