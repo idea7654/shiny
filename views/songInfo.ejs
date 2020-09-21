@@ -2,4 +2,17 @@
   <h3>타이틀: <%=result.title%></h3>
   <h3>가수명: <%=result.singer%></h3>
   <h3>앨범명: <%=result.album%></h3>
+
+  <form action="/review" method="POST">
+    <input type="hidden" name="id" value="<%=result.id%>">
+    <input type="text" name="review" value="리뷰내용"><br>
+    <input type="text" name="score" value="점수"><br>
+    <button type="submit">submit</button>
+  </form>
+
+  <% review.forEach(function(i) { %>
+    <h3>review: <%=i.review%></h3>
+    <h3>score: <%=i.score%></h3>
+    <br>
+  <%});%>
 </body>

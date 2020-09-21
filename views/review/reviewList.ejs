@@ -1,0 +1,9 @@
+<div class="review">
+  <h3>최신 리뷰</h3>
+  <ul>
+    <% result.forEach(function(i) { %>
+      <li><a href="../song/<%=i.reviewtitle%>"><%=i.review%><br><%=i.score%></a></li>
+      <br>
+    <%});%>
+  </ul>
+</div>

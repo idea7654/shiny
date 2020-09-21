@@ -4,7 +4,7 @@ const router = express.Router();
 
 router.get('/', async(req, res, next) => {
   try{
-    const resultReview = await Review.findAll({ limit: 10, order: [['createdAt', 'DESC']]});
+    const resultReview = await Review.findAll({ limit: 3, order: [['createdAt', 'DESC']]});
     const resultSong = await Song.findAll({ limit: 10, order: [['createdAt', 'DESC']]});
     const comingSong = await Coming.findAll({ limit: 10, order: [['createdAt', 'DESC']]});
     const announce = await Announce.findAll({ limit: 10, order: [['createdAt', 'DESC']]});

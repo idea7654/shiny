@@ -1,0 +1,9 @@
+<div class="middleValue">
+  <h3>중앙값</h3>
+  <ul>
+    <% result.forEach(function(i) { %>
+      <li><a href="/announce/<%=i.id%>"><%=i.title%></a></li>
+    <%});%>
+  </ul>
+  <button type="button"><a href="/announce">글쓰기</a></button>
+</div>

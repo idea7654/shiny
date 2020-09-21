@@ -1,8 +1,8 @@
 const express = require('express');
-const {Song} = require('../models');
+const {Song, Review} = require('../models');
 const router = express.Router();
 const sequelize = require('sequelize');
-const Op = sequelize.Op;
+//const Op = sequelize.Op;
 
 router.get('/', (req, res) => {
   res.render('song');
@@ -35,7 +35,7 @@ router.get('/:songname', async(req, res, next) => {
     }else{
 
     }
-    
+
     res.json(result);
   }catch(err){
     console.error(err);
@@ -51,8 +51,12 @@ router.get('/:id', async(req, res, next) => {
         id: id
       }
     });
-    res.render('songInfo', {result: result[0]});
-    console.log(result);
+    const review = await Review.findAll({
+      where: {
+        reviewtitle: id
+      }
+    });
+    res.render('songInfo', {result: result[0], review: review});
   }catch(err){
     console.error(err);
     next(err);

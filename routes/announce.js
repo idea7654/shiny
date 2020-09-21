@@ -2,7 +2,7 @@ const express = require('express');
 const {Announce} = require('../models');
 const router = express.Router();
 const sequelize = require('sequelize');
-const Op = sequelize.Op;
+//const Op = sequelize.Op;
 
 router.get('/', (req, res) => {
   res.render('announce');
@@ -10,7 +10,9 @@ router.get('/', (req, res) => {
 
 router.get('/list', async(req, res, next) => {
   try{
-    const result = await Announce.findAll({order: [['createdAt', 'DESC']]});
+    const result = await Announce.findAll({
+      order: [['createdAt', 'DESC']]
+    });
 
     res.render('announceList', {result: result});
   }catch(err){

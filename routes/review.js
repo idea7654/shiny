@@ -4,15 +4,18 @@ const router = express.Router();
 //song.ejs render후 id값을 받아와 그에 해당하는 song정보와 review를 가져옴
 router.get('/', async(req, res, next) => {
   try{
-    const result = await Review.findAll();
-    res.json(result);
+    const result = await Review.findAll({
+      order: [['createdAt', 'DESC']]
+    });
+    res.render('review/reviewList', {result: result});
   }catch(err){
     console.error(err);
     next(err);
   }
 });
-
+/*
 router.get('/:id', async(req, res, next) => {
+  const id = req.params.id;
   try{
     const review = await Review.findAll({
       include: {
@@ -20,12 +23,13 @@ router.get('/:id', async(req, res, next) => {
         where: { id: req.params.id }
       }
     });
-    res.json(review);
+    res.redirect(`song/${id}`);
+    console.log(review.reviewtitle);
   }catch(err){
     console.error(err);
     next(err);
   }
-});
+});*/
 
 router.post('/', async(req, res, next) => {
   try{
@@ -34,7 +38,7 @@ router.post('/', async(req, res, next) => {
       review: req.body.review,
       score: req.body.score
     });
-    res.json(result);
+    res.redirect(`song/${req.body.id}`);
   }catch(err){
     console.error(err);
     next(err);

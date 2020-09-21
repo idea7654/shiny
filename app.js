@@ -31,7 +31,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', indexRouter);
 app.use('/song', songRouter);
 app.use('/review', reviewRouter);
-app.use('/statis', statisRouter);
+app.use('/recommend', statisRouter);
 app.use('/announce', announceRouter);
 app.use('/coming', comingRouter);
 
