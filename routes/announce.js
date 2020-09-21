@@ -4,7 +4,7 @@ const router = express.Router();
 const sequelize = require('sequelize');
 const Op = sequelize.Op;
 
-router.get('/', (req, res, next) => {
+router.get('/', (req, res) => {
   res.render('announce');
 });
 

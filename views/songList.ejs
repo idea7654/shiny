@@ -1,0 +1,9 @@
+<div class="announce">
+  <h3>노래</h3>
+  <ul>
+    <% result.forEach(function(i) { %>
+      <li><a href="/song/<%=i.id%>"><%=i.title%></a></li>
+    <%});%>
+  </ul>
+  <button type="button"><a href="/song">글쓰기</a></button>
+</div>
