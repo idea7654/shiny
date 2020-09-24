@@ -36,7 +36,8 @@ router.post('/', async(req, res, next) => {
     const result = await Review.create({
       reviewtitle: req.body.id,
       review: req.body.review,
-      score: req.body.score
+      score: req.body.score,
+      password: req.body.password
     });
     res.redirect(`song/${req.body.id}`);
   }catch(err){

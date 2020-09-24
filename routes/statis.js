@@ -1,49 +1,15 @@
 const express = require('express');
 const {Song, Review} = require('../models');
 const router = express.Router();
-const value = [];
-//recommend.ejs 렌더 후 제공
-/*
-router.get('/:id', async(req, res, next) => {
-  const id = req.params.id;
-  try{
-    const score = await Review.findAll({
-      attributes: ['score'],
-      where: {
-        reviewtitle: id
-      }
-    });
-    const song = await Song.findAll({
-      attributes: ['title'],
-      where: {
-        id: id
-      }
-    });
-    var array = [];
-    for (var i in score){
-      var sc = score[i].score;
-      array.push(parseInt(sc));
-    }
-    var median = getMedian(array);
-    var average = getAve(array);
 
-    //res.render('recommend/recommend', {middle: middleValue, average: average});
-    console.log(song[0].title, median);
-    value.push({title: song[0].title, median: median});
-    console.log(value);
-  }catch(err){
-    console.error(err);
-    next(err);
-  }
-});
-*/
-router.get('/list', async(req, res, next) => {
+router.get('/', async(req, res, next) => {
   try{
     //const review = await Review.findAll();
     const song = await Song.findAll();
-
+    const value = [];
     for (var i=0; i<song.length; i++){
       const id = song[i].id;
+      const title = song[i].title;
       const score = await Review.findAll({
         //attributes: ['score'],
         where: {
@@ -56,8 +22,19 @@ router.get('/list', async(req, res, next) => {
         array.push(parseInt(sc));
       }
       const median = getMedian(array);
-      console.log(median);
+      value.push({title: title, median: median, id: id});
     }
+    value.sort(function (a, b) {
+      if (a.median > b.median) {
+        return 1;
+      }
+      if (a.median < b.median) {
+        return -1;
+      }
+      // a must be equal to b
+      return 0;
+    });
+    res.render('recommend/recommend', {value: value});
   }catch(err){
     console.error(err);
     next(err);
