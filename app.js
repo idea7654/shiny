@@ -11,6 +11,8 @@ const reviewRouter = require('./routes/review');
 const statisRouter = require('./routes/statis');
 const announceRouter = require('./routes/announce');
 const comingRouter = require('./routes/coming');
+const randomRouter = require('./routes/random');
+const searchRouter = require('./routes/search');
 
 const app = express();
 sequelize.sync();
@@ -34,6 +36,8 @@ app.use('/review', reviewRouter);
 app.use('/recommend', statisRouter);
 app.use('/announce', announceRouter);
 app.use('/coming', comingRouter);
+app.use('/random', randomRouter);
+app.use('/search', searchRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

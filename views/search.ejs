@@ -1,0 +1,8 @@
+<div class="search">
+  <h3>검색결과</h3>
+  <ul>
+    <% result.forEach(function(i) { %>
+      <li><a href="/song/<%=i.id%>"><%=i.title%></a></li>
+    <%});%>
+  </ul>
+</div>

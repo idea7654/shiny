@@ -70,7 +70,7 @@ router.post('/', async(req, res, next) => {
       singer: req.body.singer,
       album: req.body.album
     });
-    res.redirect('songList');
+    res.redirect('/song/list');
   }catch(err){
     console.error(err);
     next(err);
